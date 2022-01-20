@@ -40,7 +40,7 @@ def request_player_name():
     # Input field for Player name, strip any whitespace
     player_name = input('Welcome to Hangman, please enter your Player name: ')
     player_name = player_name.strip()
-
+    print("Hi "+player_name+", let's get started...")
     return player_name
 
 
@@ -82,7 +82,7 @@ def check_for_replay():
 # Game entry point, will call all other methods in a loop
 def main():
     global game_over
-    
+
     print(" ----- Welcome to Hangman ---- ")
     request_player_name()
     select_random_word()
