@@ -33,7 +33,7 @@ game_over = False
 # Game logic functions
 
 
-# Request player to enter name 
+# Request player to enter name
 def request_player_name():
     global player_name
     
@@ -46,9 +46,21 @@ def request_player_name():
 
 # Generate a randomly selected word from our predefined list of words
 def select_random_word():
-    pass
+    
+    global random_word
+    # setup list of words variable
+    words_list = []
+    
+    # using words.txt file populate words list line by line
+    with open("./words.txt", "r") as file:
+        for line in file:
+            words_list.append(line.strip().lower())
 
+    # generate random number based on current runtime
+    random.seed(time.time())
+    random_word = random.choice(words_list)
 
+ 
 # Print out the word with dashes for letters that haven't been guessed
 def display_blank_word():
     pass
