@@ -60,14 +60,78 @@ def select_random_word():
     random.seed(time.time())
     random_word = random.choice(words_list)
 
- 
-# Print out the word with dashes for letters that haven't been guessed
-def display_blank_word():
-    pass
-
 
 # Print out the hangman drawing based on the number of lives left
 def print_hangman():
+    global guesses_left
+
+    if guesses_left == 6:
+        print("+------------+")
+        print("|            |")
+        print("|")
+        print("|")
+        print("|")
+        print("|")
+        print("|")
+        print("+-------+")
+    elif guesses_left == 5:
+        print("+------------+")
+        print("|            |")
+        print("|            O")
+        print("|")
+        print("|")
+        print("|")
+        print("|")
+        print("+-------+")  
+    elif guesses_left == 4:
+        print("+------------+")
+        print("|            |")
+        print("|            O")
+        print("|            |")
+        print("|")
+        print("|")
+        print("|")
+        print("+-------+")
+    elif guesses_left == 3:
+        print("+------------+")
+        print("|            |")
+        print("|            O")
+        print("|            |")
+        print("|           /")
+        print("|")
+        print("|")
+        print("+-------+")
+    elif guesses_left == 2:
+        print("+------------+")
+        print("|            |")
+        print("|            O")
+        print("|            |")
+        print("|           / \\")
+        print("|")
+        print("|")
+        print("+-------+")
+    elif guesses_left == 1:
+        print("+------------+")
+        print("|            |")
+        print("|            O")
+        print("|            |\\")
+        print("|           / \\")
+        print("|")
+        print("|")
+        print("+-------+")
+    elif guesses_left == 0:
+        print("+------------+")
+        print("|            |")
+        print("|            O")
+        print("|           /|\\")
+        print("|           / \\")
+        print("|")
+        print("|")
+        print("+-------+")
+
+
+# Print out the word with dashes for letters that haven't been guessed
+def display_blank_word():
     pass
 
 
@@ -110,6 +174,9 @@ def main():
 
         letter_check_correct()
         check_for_game_over()
+
+        # Set game_over = True to break loop for testing
+        game_over = True
 
     # If game_over = True, check for Player replay
     if game_over:
