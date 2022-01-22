@@ -278,7 +278,32 @@ def letter_check_correct():
 
 # Check to see if the player has won or lost
 def check_for_game_over():
-    pass
+    global guesses_left
+    global game_over
+    global correct_letters
+
+    # When No guesses left, print HANGMAN and check for replay
+    if guesses_left <= 0:
+        game_over = True
+        print_hangman()
+        print("HANGMAN! You didn't guess the correct word.")
+        time.sleep(1)
+        print("The random word was: " + random_word)
+        time.sleep(1)
+        check_for_replay()
+    
+    # If guesses remain, assume all letters identified, but do double check 
+    else:
+        all_letters_correct = True
+        for letter in random_word:
+            if letter not in correct_letters:
+                all_letters_correct = False
+                break
+        if all_letters_correct:
+            game_over = True
+            time.sleep(1)
+            print("You Win! Congratulations, you got the word "+random_word)
+            check_for_replay()
 
 
 # Check is Player wishes to replay, else exit
