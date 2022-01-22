@@ -1,2 +1,8 @@
--Random Words List Here-
-
+Alpha
+Beta
+Delta
+Gamma
+Luno
+Omega
+Pico
+Theta

@@ -132,7 +132,17 @@ def print_hangman():
 
 # Print out the word with dashes for letters that haven't been guessed
 def display_blank_word():
-    pass
+    global correct_letters
+    global incorrect_letters
+
+    # Loop through random word, print either a _ or correctly guessed letters
+    for i in range(0, len(random_word)):
+        letter = random_word[i]
+        if letter in correct_letters:
+            print(letter, end=" ")
+        else:
+            print("_", end=" ")
+    print("")
 
 
 # Will make sure the user types only 1 letter that has not been used before
