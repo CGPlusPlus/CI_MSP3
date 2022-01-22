@@ -33,13 +33,18 @@ game_over = False
 # Game logic functions
 
 
+# Introduction to Hangman game
+def intro():
+    print("Hangman is a guessing game, where a word is randomly generated")
+
+
 # Request player to enter name
 def request_player_name():
     global player_name
     
     # Input field for Player name, strip any whitespace
     player_name = input('Welcome to Hangman, please enter your Player name: ')
-    player_name = player_name.strip()
+    player_name = player_name.strip().capitalize()
     print("Hi "+player_name+", let's get started...")
     return player_name
 
@@ -54,7 +59,7 @@ def select_random_word():
     # using words.txt file populate words list line by line
     with open("./words.txt", "r") as file:
         for line in file:
-            words_list.append(line.strip().lower())
+            words_list.append(line.strip().upper())
 
     # generate random number based on current runtime
     random.seed(time.time())
@@ -156,10 +161,10 @@ def letter_validation():
         # Display input text based on guesses remaining
         if guesses_left == 6:
             letter = input("Enter first guess: ")
-            letter = letter.strip().lower()
+            letter = letter.strip().upper()
         elif guesses_left < 6:
             letter = input("Enter next guess: ")
-            letter = letter.strip().lower()
+            letter = letter.strip().upper()
         
         # Validation to check if Player input is acceptable
         if len(letter) > 1:
@@ -169,19 +174,29 @@ def letter_validation():
         elif letter.isalpha():
             if letter in correct_letters or letter in incorrect_letters:
                 print("You have already guessed the letter " + letter +
-                      ", please try again")
+                      ", please try again!")
             else:
                 valid_letter = True
 
         else:
-            print("Input must be a letter between a and z, please try again!")
+            print("Input must be a letter between A and Z, please try again!")
 
     return letter
 
 
 # Check if the letter guess is correct and update variables based on result
 def letter_check_correct():
-    pass
+    global correct_letters
+    global incorrect_letters
+    global guesses_left
+    
+    # Retrieve letter following validation and check it its in random_word
+    letter = letter_validation()
+    if letter in random_word:
+        correct_letters.append(letter)
+    else:
+        incorrect_letters.append(letter)
+        guesses_left -= 1
 
 
 # Check to see if the player has won or lost
@@ -199,6 +214,7 @@ def main():
     global game_over
 
     print(" ----- Welcome to Hangman ---- ")
+    intro()
     request_player_name()
     select_random_word()
     
@@ -209,16 +225,11 @@ def main():
 
         # Print incorrect guesses before each guess
         if len(incorrect_letters) > 0:
-            print("Incorrect guesses: \n"+incorrect_letters)
-
-        # Testing purposes only
-        letter_validation() 
+            print("\nIncorrect guesses: ")
+            print(incorrect_letters)
         
         letter_check_correct()
         check_for_game_over()
-
-        # Set game_over = True to break loop for testing
-        game_over = True
 
     # If game_over = True, check for Player replay
     if game_over:
