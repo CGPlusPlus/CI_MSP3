@@ -147,7 +147,36 @@ def display_blank_word():
 
 # Will make sure the user types only 1 letter that has not been used before
 def letter_validation():
-    pass
+    global guesses_left
+    valid_letter = False
+    letter = ""
+    
+    # Negative feedback loop
+    while valid_letter is False:
+        # Display input text based on guesses remaining
+        if guesses_left == 6:
+            letter = input("Enter first guess: ")
+            letter = letter.strip().lower()
+        elif guesses_left < 6:
+            letter = input("Enter next guess: ")
+            letter = letter.strip().lower()
+        
+        # Validation to check if Player input is acceptable
+        if len(letter) > 1:
+            print("You must enter a single letter, please try again!")
+        elif len(letter) <= 0:
+            print("You cannot enter no value, please try again!")
+        elif letter.isalpha():
+            if letter in correct_letters or letter in incorrect_letters:
+                print("You have already guessed the letter " + letter +
+                      ", please try again")
+            else:
+                valid_letter = True
+
+        else:
+            print("Input must be a letter between a and z, please try again!")
+
+    return letter
 
 
 # Check if the letter guess is correct and update variables based on result
@@ -182,6 +211,9 @@ def main():
         if len(incorrect_letters) > 0:
             print("Incorrect guesses: \n"+incorrect_letters)
 
+        # Testing purposes only
+        letter_validation() 
+        
         letter_check_correct()
         check_for_game_over()
 
