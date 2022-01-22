@@ -35,7 +35,16 @@ game_over = False
 
 # Introduction to Hangman game
 def intro():
-    print("Hangman is a guessing game, where a word is randomly generated")
+    print("Hangman is a guessing game, where a word is randomly selected")
+    print("from a list of words. ")
+    time.sleep(2.5)
+    print("The aim is to guess the word, guessing 1 letter at a time.")
+    time.sleep(2.5)
+    print("You can guess up to 6 letters incorrectly, losing a life each time")
+    time.sleep(2.5)
+    print("If you can guess the word, with less than 6 incorrect guesses,")
+    print("you win the game")
+    time.sleep(2.5)
 
 
 # Request player to enter name
@@ -43,9 +52,11 @@ def request_player_name():
     global player_name
     
     # Input field for Player name, strip any whitespace
-    player_name = input('Welcome to Hangman, please enter your Player name: ')
+    player_name = input('First things first, please enter your Player name: ')
+    time.sleep(0.5)
     player_name = player_name.strip().capitalize()
     print("Hi "+player_name+", let's get started...")
+    time.sleep(1)
     return player_name
 
 
@@ -71,16 +82,25 @@ def print_hangman():
     global guesses_left
 
     if guesses_left == 6:
-        print("+------------+")
+        time.sleep(0.25)
+        print("\n+------------+")
+        time.sleep(0.25)
         print("|            |")
+        time.sleep(0.25)
         print("|")
+        time.sleep(0.25)
         print("|")
+        time.sleep(0.25)
         print("|")
+        time.sleep(0.25)
         print("|")
+        time.sleep(0.25)
         print("|")
+        time.sleep(0.25)
         print("+-------+")
+        time.sleep(1)
     elif guesses_left == 5:
-        print("+------------+")
+        print("\n+------------+")
         print("|            |")
         print("|            O")
         print("|")
@@ -89,7 +109,7 @@ def print_hangman():
         print("|")
         print("+-------+")  
     elif guesses_left == 4:
-        print("+------------+")
+        print("\n+------------+")
         print("|            |")
         print("|            O")
         print("|            |")
@@ -98,7 +118,7 @@ def print_hangman():
         print("|")
         print("+-------+")
     elif guesses_left == 3:
-        print("+------------+")
+        print("\n+------------+")
         print("|            |")
         print("|            O")
         print("|            |")
@@ -107,7 +127,7 @@ def print_hangman():
         print("|")
         print("+-------+")
     elif guesses_left == 2:
-        print("+------------+")
+        print("\n+------------+")
         print("|            |")
         print("|            O")
         print("|            |")
@@ -116,7 +136,7 @@ def print_hangman():
         print("|")
         print("+-------+")
     elif guesses_left == 1:
-        print("+------------+")
+        print("\n+------------+")
         print("|            |")
         print("|            O")
         print("|            |\\")
@@ -125,7 +145,7 @@ def print_hangman():
         print("|")
         print("+-------+")
     elif guesses_left == 0:
-        print("+------------+")
+        print("\n+------------+")
         print("|            |")
         print("|            O")
         print("|           /|\\")
@@ -160,10 +180,12 @@ def letter_validation():
     while valid_letter is False:
         # Display input text based on guesses remaining
         if guesses_left == 6:
-            letter = input("Enter first guess: ")
+            time.sleep(1)
+            letter = input("\nEnter first guess: ")
             letter = letter.strip().upper()
         elif guesses_left < 6:
-            letter = input("Enter next guess: ")
+            time.sleep(1)
+            letter = input("\nEnter next guess: ")
             letter = letter.strip().upper()
         
         # Validation to check if Player input is acceptable
@@ -214,6 +236,7 @@ def main():
     global game_over
 
     print(" ----- Welcome to Hangman ---- ")
+    time.sleep(2)
     intro()
     request_player_name()
     select_random_word()
@@ -225,6 +248,7 @@ def main():
 
         # Print incorrect guesses before each guess
         if len(incorrect_letters) > 0:
+            time.sleep(0.5)
             print("\nIncorrect guesses: ")
             print(incorrect_letters)
         
