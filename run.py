@@ -236,13 +236,13 @@ def letter_validation():
 
     # Negative feedback loop
     while valid_letter is False:
-        # Display input text based on guesses remaining
-        if guesses_left == 6 and len(correct_letters) == 0:
-            time.sleep(1)
+        # Display input text based wheter its Players first turn or not
+        if len(correct_letters) == 0 and len(incorrect_letters) == 0:
+            time.sleep(0.5)
             letter = input("\nEnter first guess: ")
             letter = letter.strip().upper()
-        elif guesses_left < 6:
-            time.sleep(1)
+        else:
+            time.sleep(0.5)
             letter = input("\nEnter next guess: ")
             letter = letter.strip().upper()
             
@@ -289,7 +289,7 @@ def check_for_game_over():
     if guesses_left <= 0:
         game_over = True
         print_hangman()
-        print("HANGMAN! You didn't guess the correct word.")
+        print("\nHANGMAN! You didn't guess the correct word.")
         time.sleep(1)
         print("The random word was: " + random_word)
         time.sleep(1)
@@ -305,7 +305,7 @@ def check_for_game_over():
         if all_letters_correct:
             game_over = True
             time.sleep(2)
-            print("You Win! Congratulations, you got the word "+random_word)
+            print("\nYou Win! Congratulations, you got the word "+random_word)
             time.sleep(1)
             check_for_replay()
 
@@ -325,7 +325,7 @@ def check_for_replay():
     replay = ""
     # If statement to check input
     while replay != 'N' or 'Y':
-        replay = input("Would you like to play again "+player_name+"? (Y/N): ")
+        replay = input("\nWould you like to play again "+player_name+"? (Y/N): ")
         replay = replay.strip().capitalize()
         if replay == 'Y':
             correct_letters = []
