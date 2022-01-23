@@ -52,7 +52,7 @@ def intro():
 # Request player to enter name
 def request_player_name():
     global player_name
-    
+
     # Input field for Player name, strip any whitespace
     player_name = input('First things first, please enter your Player name: ')
     time.sleep(0.5)
@@ -295,7 +295,7 @@ def check_for_game_over():
         time.sleep(1)
         check_for_replay()
     
-    # If guesses remain, assume all letters identified, but do double check 
+    # If guesses remain, check each letter against correct_letters list
     else:
         all_letters_correct = True
         for letter in random_word:
@@ -325,8 +325,11 @@ def check_for_replay():
     replay = ""
     # If statement to check input
     while replay != 'N' or 'Y':
-        replay = input("\nWould you like to play again "+player_name+"? (Y/N): ")
+        print("")
+        replay = input("Would you like to play again "+player_name+"? (Y/N): ")
         replay = replay.strip().capitalize()
+        
+        # If Player replaying, reset all variables to game starting values
         if replay == 'Y':
             correct_letters = []
             incorrect_letters = []
@@ -335,8 +338,10 @@ def check_for_replay():
             game_over = False
             restart = True
             main()
+        # Else terminate program
         elif replay == 'N':
             sys.exit()
+        # Validation for Y or N value only
         else:
             print("You must enter either Y for Yes or N for No. Try again.")
         
@@ -346,11 +351,13 @@ def main():
     global game_over
     global restart
     
+    # Only need to run these functions at game beginning
     if restart is False:
         print(" ----- Welcome to Hangman ---- ")
         time.sleep(1)
         intro()
         request_player_name()
+
     select_random_word()
     
     # Start while loop for game to run while game_over = False
