@@ -114,11 +114,11 @@ This website was deployed using Heroku Platform following these steps:
     •	In the Heroku Dashboard, click on the Create new app button.  
     •	Enter an app name (cgplusplus-hangman) and region (Europe) and click the Create app button.  
     •	Click on settings and in the 'Config Vars' section, click on Reveal Config Vars. Add a key of PORT and a value of 8000.  
-    •	In the 'Build Packs' section, click on Add Build Pack and select 'Python'. Click Save Changes button. Repeat this step again, except select 'NodeJS'. 
+    •	In the 'Build Packs' section, click on Add Build Pack and select 'Python'. Click Save Changes button. Repeat this step again, except select 'NodeJS'.  
     •	Click on Deploy tab and choose Deployment Method - Github.  
-    •	In the Connect to Github section, type MSP3 in the repo-name box and click Search button. Click the Connect button next to CGPlusPlus/CI_MSP3.
-    •	Heroku app is now connected to the Github repository. Next, navigate to the Manual deploy section, ensure the branch to deploy is main. Click on Deploy Branch button.
-    •	This app is now deployed at [CGPlusPlus-HANGMAN](https://cgplusplus-hangman.herokuapp.com)
+    •	In the Connect to Github section, type MSP3 in the repo-name box and click Search button. Click the Connect button next to CGPlusPlus/CI_MSP3.  
+    •	Heroku app is now connected to the Github repository. Next, navigate to the Manual deploy section, ensure the branch to deploy is main. Click on Deploy Branch button.  
+    •	This app is now deployed at [CGPlusPlus-HANGMAN](https://cgplusplus-hangman.herokuapp.com)  
 
 The repository can also be cloned by following the below steps:  
 •	Navigate  to the GitHub repository  
@@ -131,7 +131,7 @@ The repository can also be cloned by following the below steps:
 
 ## Acknowledgements
 ### Media
-•	Random Words - Although these can be any random words, I used the Random Word Generator website to generate a list of 50 words for me: https://www.randomlists.com
+•	Random Words - Although these can be any random words, I used the Random Word Generator website to generate a list of 50 words for me: https://www.randomlists.com  
 
 ### Code
-•	Python Basics Project Assignment: How To Create Hangman in under 10 minutes! - This YouTube video was used as an inspiration in deciding what project to complete - https://www.youtube.com/watch?v=ynwB-QfOPRw 
+•	Python Basics Project Assignment: How To Create Hangman in under 10 minutes! - This YouTube video was used as an inspiration in deciding what project to complete - https://www.youtube.com/watch?v=ynwB-QfOPRw  
