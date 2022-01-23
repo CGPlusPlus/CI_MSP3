@@ -4,7 +4,6 @@ import random
 import time
 import sys
 
-
 """
     -------HANGMAN-------
     Game logic:
@@ -64,11 +63,11 @@ def request_player_name():
 
 # Generate a randomly selected word from our predefined list of words
 def select_random_word():
-    
+
     global random_word
     # setup list of words variable
     words_list = []
-    
+
     # using words.txt file populate words list line by line
     with open("./words.txt", "r") as file:
         for line in file:
@@ -117,8 +116,8 @@ def print_hangman():
         time.sleep(0.25)
         print("|")
         time.sleep(0.25)
-        print("+-------+") 
-        time.sleep(0.25) 
+        print("+-------+")
+        time.sleep(0.25)
     elif guesses_left == 4:
         time.sleep(0.25)
         print("\n+------------+")
@@ -135,8 +134,8 @@ def print_hangman():
         time.sleep(0.25)
         print("|")
         time.sleep(0.25)
-        print("+-------+") 
-        time.sleep(0.25) 
+        print("+-------+")
+        time.sleep(0.25)
     elif guesses_left == 3:
         time.sleep(0.25)
         print("\n+------------+")
@@ -153,8 +152,8 @@ def print_hangman():
         time.sleep(0.25)
         print("|")
         time.sleep(0.25)
-        print("+-------+") 
-        time.sleep(0.25) 
+        print("+-------+")
+        time.sleep(0.25)
     elif guesses_left == 2:
         time.sleep(0.25)
         print("\n+------------+")
@@ -171,8 +170,8 @@ def print_hangman():
         time.sleep(0.25)
         print("|")
         time.sleep(0.25)
-        print("+-------+") 
-        time.sleep(0.25) 
+        print("+-------+")
+        time.sleep(0.25)
     elif guesses_left == 1:
         time.sleep(0.25)
         print("\n+------------+")
@@ -189,7 +188,7 @@ def print_hangman():
         time.sleep(0.25)
         print("|")
         time.sleep(0.25)
-        print("+-------+") 
+        print("+-------+")
         time.sleep(0.25)
     elif guesses_left == 0:
         time.sleep(0.25)
@@ -207,7 +206,7 @@ def print_hangman():
         time.sleep(0.25)
         print("|")
         time.sleep(0.25)
-        print("+-------+") 
+        print("+-------+")
         time.sleep(0.25)
 
 
@@ -245,7 +244,7 @@ def letter_validation():
             time.sleep(0.5)
             letter = input("\nEnter next guess: ")
             letter = letter.strip().upper()
-            
+
         # Validation to check if Player input is acceptable
         if len(letter) > 1:
             print("You must enter a single letter, please try again!")
@@ -269,7 +268,7 @@ def letter_check_correct():
     global correct_letters
     global incorrect_letters
     global guesses_left
-    
+
     # Retrieve letter following validation and check it its in random_word
     letter = letter_validation()
     if letter in random_word:
@@ -294,7 +293,7 @@ def check_for_game_over():
         print("The random word was: " + random_word)
         time.sleep(1)
         check_for_replay()
-    
+
     # If guesses remain, check each letter against correct_letters list
     else:
         all_letters_correct = True
@@ -319,7 +318,7 @@ def check_for_replay():
     global player_name
     global game_over
     global restart
-    
+
     # Ask player if they want to replay game
     time.sleep(1)
     replay = ""
@@ -328,7 +327,7 @@ def check_for_replay():
         print("")
         replay = input("Would you like to play again "+player_name+"? (Y/N): ")
         replay = replay.strip().capitalize()
-        
+
         # If Player replaying, reset all variables to game starting values
         if replay == 'Y':
             correct_letters = []
@@ -344,13 +343,13 @@ def check_for_replay():
         # Validation for Y or N value only
         else:
             print("You must enter either Y for Yes or N for No. Try again.")
-        
+
 
 # Game entry point, will call all other methods in a loop
 def main():
     global game_over
     global restart
-    
+
     # Only need to run these functions at game beginning
     if restart is False:
         print(" ----- Welcome to Hangman ---- ")
@@ -359,7 +358,7 @@ def main():
         request_player_name()
 
     select_random_word()
-    
+
     # Start while loop for game to run while game_over = False
     while game_over is False:
         print_hangman()
