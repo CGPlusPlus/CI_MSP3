@@ -2,6 +2,7 @@
 # Importing module implements time based functions
 import random
 import time
+import sys
 
 
 """
@@ -29,6 +30,7 @@ random_word = ""
 guesses_left = 6
 player_name = ""
 game_over = False
+restart = False
 
 # Game logic functions
 
@@ -77,7 +79,7 @@ def select_random_word():
     random_word = random.choice(words_list)
 
 
-# Print out the hangman drawing based on the number of lives left
+# Loop to print out the hangman drawing, based on the number of lives left
 def print_hangman():
     global guesses_left
 
@@ -228,9 +230,10 @@ def display_blank_word():
 def letter_validation():
     global guesses_left
     global correct_letters
+
     valid_letter = False
     letter = ""
-    
+
     # Negative feedback loop
     while valid_letter is False:
         # Display input text based on guesses remaining
@@ -242,7 +245,7 @@ def letter_validation():
             time.sleep(1)
             letter = input("\nEnter next guess: ")
             letter = letter.strip().upper()
-        
+            
         # Validation to check if Player input is acceptable
         if len(letter) > 1:
             print("You must enter a single letter, please try again!")
@@ -301,24 +304,53 @@ def check_for_game_over():
                 break
         if all_letters_correct:
             game_over = True
-            time.sleep(1)
+            time.sleep(2)
             print("You Win! Congratulations, you got the word "+random_word)
+            time.sleep(1)
             check_for_replay()
 
 
-# Check is Player wishes to replay, else exit
+# Check if Player wishes to replay, else exit
 def check_for_replay():
-    pass
-
+    global correct_letters
+    global incorrect_letters
+    global random_word
+    global guesses_left
+    global player_name
+    global game_over
+    global restart
+    
+    # Ask player if they want to replay game
+    time.sleep(1)
+    replay = ""
+    # If statement to check input
+    while replay != 'N' or 'Y':
+        replay = input("Would you like to play again "+player_name+"? (Y/N): ")
+        replay = replay.strip().capitalize()
+        if replay == 'Y':
+            correct_letters = []
+            incorrect_letters = []
+            random_word = ""
+            guesses_left = 6
+            game_over = False
+            restart = True
+            main()
+        elif replay == 'N':
+            sys.exit()
+        else:
+            print("You must enter either Y for Yes or N for No. Try again.")
+        
 
 # Game entry point, will call all other methods in a loop
 def main():
     global game_over
-
-    print(" ----- Welcome to Hangman ---- ")
-    time.sleep(1)
-    intro()
-    request_player_name()
+    global restart
+    
+    if restart is False:
+        print(" ----- Welcome to Hangman ---- ")
+        time.sleep(1)
+        intro()
+        request_player_name()
     select_random_word()
     
     # Start while loop for game to run while game_over = False
@@ -331,13 +363,8 @@ def main():
             time.sleep(0.5)
             print("\nIncorrect guesses: ")
             print(incorrect_letters)
-        
         letter_check_correct()
         check_for_game_over()
-
-    # If game_over = True, check for Player replay
-    if game_over:
-        check_for_replay()
 
 
 # Will only be called when you run the python program from the terminal

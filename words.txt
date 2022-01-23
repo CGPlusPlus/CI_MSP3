@@ -1,8 +1,2 @@
-Alpha
-Beta
-Delta
-Gamma
-Luno
-Omega
-Pico
-Theta
+eleven
+twelve
